@@ -1,0 +1,14 @@
+[
+    {
+        "origen": "Manizales",
+        "destino": "Medellin",
+        "duracion": 1.5,
+        "precio": 95000.0
+    },
+    {
+        "origen": "Medellin",
+        "destino": "Cartagena",
+        "duracion": 3.5,
+        "precio": 295000.0
+    }
+]
