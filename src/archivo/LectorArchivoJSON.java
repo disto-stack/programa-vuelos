@@ -38,7 +38,6 @@ public class LectorArchivoJSON implements LectorArchivo<Ruta> {
       }
       
       return rutas;
-
     } catch (Exception e) {
       return null;
     }

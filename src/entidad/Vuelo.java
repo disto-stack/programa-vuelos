@@ -3,9 +3,6 @@ package entidad;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Vuelo
- */
 public class Vuelo {
 
   private List<Ruta> rutas;
@@ -35,6 +32,11 @@ public class Vuelo {
   }
 
   public Ruta buscarRuta(String origen, String destino) {
+    for (Ruta ruta : rutas) {
+      if (ruta.getOrigen() == origen && ruta.getDestino() == destino) {
+        return ruta;
+      }
+    }
     return null;
   }
 
