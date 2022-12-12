@@ -19,8 +19,7 @@ public class ControlVuelos {
   }
 
   public void cargarRutas() {
-    this.vuelos = new ArrayList<Vuelo>();
-    LectorArchivo<Ruta> archivo = new LectorArchivoJSON("src/archivo/datos");
+    LectorArchivo<Ruta> archivo = new LectorArchivoJSON("\\src\\archivo\\datos.json");
     this.rutas = archivo.cargarArchivo();
   }
 
@@ -28,8 +27,9 @@ public class ControlVuelos {
    * 
    * @param origen
    * @param destino
+   * @throws Exception
    */
-  public void crearVuelos(String origen, String destino) {
+  public void crearVuelos(String origen, String destino) throws Exception {
     if (!(origen == destino)) {
       for (int i = 0; i < this.rutas.size(); i++) {
         Ruta ruta = this.rutas.get(i);
@@ -53,15 +53,19 @@ public class ControlVuelos {
               vuelo.agregarRuta(rutaEscala);
 
               this.vuelos.add(vuelo);
+              continue;
             }
           }
         }
       }
+    } else {
+      throw new Exception("El origen y destino no son validos");
     }
   }
 
-  public String mostrarVuelosDisponibles(String origen, String destino) {
+  public String mostrarVuelosDisponibles(String origen, String destino) throws Exception {
     this.cargarRutas();
+
     if (this.rutas.size() <= 0) {
       return null;
     }

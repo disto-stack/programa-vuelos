@@ -19,7 +19,7 @@ public class ControlVuelosTest {
      * estan dentro de las rutas por lo que se pueden mostrar los vuelos disponibles
      */
     @Test
-    public void testCrearVuelosValido() {
+    public void testCrearVuelosValido() throws Exception {
         /*
          * Como el metodo a evaluar no tiene retorno validamos si se creo el vuelo
          * validando los
@@ -60,7 +60,7 @@ public class ControlVuelosTest {
      * decidimos colocar el mismo valor
      */
     @Test
-    public void testCrearVuelosInvalido() {
+    public void testCrearVuelosInvalidos() throws Exception {
         /*
          * Como el metodo a evaluar no tiene retorno validamos si se creo la ruta
          * validando que el origen y el destino no sean iguales a los valores que
@@ -83,4 +83,33 @@ public class ControlVuelosTest {
             System.out.println(e.getMessage());
         }
     }
+
+    
+    /* Prueba unitaria 2
+    * - Prueba para el caso no exitoso, donde el origen y destino son valores
+    * invalidos
+    */
+   @Test
+   public void testCrearVuelosInvalidoAlguno() throws Exception {
+    /*
+     * como son invalidos se debe crear una nueva excepcion con el mensaje
+     * "El origen y destino no son validos"
+     */
+    ControlVuelos control = new ControlVuelos();
+    control.crearVuelos("manizales", "k");
+    boolean modificado = false;
+    List<Ruta> rutaActuales = control.getRutas();
+
+    for (Ruta ruta : rutaActuales) {
+        if (ruta.getOrigen().equals("manizales") && ruta.getDestino().equals("manizales")) {
+            modificado = true;
+        }
+    }
+
+    try {
+        assertTrue(modificado);
+    } catch (AssertionError e) {
+        System.out.println(e.getMessage());
+    }
+}
 }
