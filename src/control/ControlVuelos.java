@@ -14,6 +14,9 @@ public class ControlVuelos {
   private List<Vuelo> vuelos;
 
 
+  /**
+   * Lee desde un lector de archivos, las rutas almacenadas
+   */
   public void cargarRutas() {
     this.vuelos = new ArrayList<Vuelo>();
     
@@ -22,9 +25,10 @@ public class ControlVuelos {
   }
 
   /**
-   * 
-   * @param origen
-   * @param destino
+   * Crea los objetos de vuelos posibles (Directos o en escala) con las rutas cargadas
+   * previamente en el control.
+   * @param origen de los vuelos posibles.
+   * @param destino de los vuelos posibles.
    */
   public void crearVuelos(String origen, String destino) {
     for (int i = 0; i < this.rutas.size(); i++) {
@@ -55,6 +59,12 @@ public class ControlVuelos {
     }
   }
 
+  /**
+   * Método para mostrar todos los vuelos posibles dado un origen y un destino.
+   * @param origen de los vuelos posibles que se desean mostrar.
+   * @param destino de los vuelos posibles que se desean mostrar.
+   * @return cadena de texto con los vuelos posibles.
+   */
   public String mostrarVuelosDisponibles(String origen, String destino) {
     this.cargarRutas();
     if (this.rutas.size() <= 0) {
