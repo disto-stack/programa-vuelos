@@ -10,5 +10,53 @@
         "destino": "Cartagena",
         "duracion": 3.5,
         "precio": 295000.0
+    },
+    {
+        "origen": "Cucuta",
+        "destino": "Villavicencio",
+        "duracion": 4.5,
+        "precio": 29000.0
+    },
+    {
+        "origen": "Pereira",
+        "destino": "Bogota",
+        "duracion": 2,
+        "precio": 80000.0
+    },
+    {
+        "origen": "Bogota",
+        "destino": "Cali",
+        "duracion": 1.5,
+        "precio": 100000.0
+    },
+    {
+        "origen": "Cucuta",
+        "destino": "Cartagena",
+        "duracion": 3,
+        "precio": 72000.0
+    },
+    {
+        "origen": "Cali",
+        "destino": "Quindio",
+        "duracion": 2,
+        "precio": 49000.0
+    },
+    {
+        "origen": "Villavicencio",
+        "destino": "Quindio",
+        "duracion": 3.5,
+        "precio": 97000.0
+    },
+    {
+        "origen": "Palmira",
+        "destino": "Buga",
+        "duracion": 4,
+        "precio": 58000.0
+    },
+    {
+        "origen": "Medellin",
+        "destino": "Pereira",
+        "duracion": 1.5,
+        "precio": 70000.0
     }
 ]

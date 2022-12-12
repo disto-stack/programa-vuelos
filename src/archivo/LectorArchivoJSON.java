@@ -38,8 +38,8 @@ public class LectorArchivoJSON implements LectorArchivo<Ruta> {
       }
       
       return rutas;
-
     } catch (Exception e) {
+      System.out.println(e.getMessage());
       return null;
     }
   }

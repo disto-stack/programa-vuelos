@@ -13,14 +13,16 @@ public class ControlVuelos {
   private List<Ruta> rutas;
   private List<Vuelo> vuelos;
 
+  public ControlVuelos() {
+    this.rutas = new ArrayList<Ruta>();
+    this.vuelos = new ArrayList<Vuelo>();
+  }
 
   /**
    * Lee desde un lector de archivos, las rutas almacenadas
    */
   public void cargarRutas() {
-    this.vuelos = new ArrayList<Vuelo>();
-    
-    LectorArchivo<Ruta> archivo = new LectorArchivoJSON("src/archivo/datos");
+    LectorArchivo<Ruta> archivo = new LectorArchivoJSON("\\src\\archivo\\datos.json");
     this.rutas = archivo.cargarArchivo();
   }
 
@@ -31,28 +33,31 @@ public class ControlVuelos {
    * @param destino de los vuelos posibles.
    */
   public void crearVuelos(String origen, String destino) {
-    for (int i = 0; i < this.rutas.size(); i++) {
-      Ruta ruta = this.rutas.get(i);
+    if (!(origen == destino)) {
+      for (int i = 0; i < this.rutas.size(); i++) {
+        Ruta ruta = this.rutas.get(i);
 
-      if (ruta.getOrigen().toUpperCase().equals(origen.toUpperCase()) 
-        && ruta.getDestino().toUpperCase().equals(destino.toUpperCase())) {
+        if (ruta.getOrigen().toUpperCase().equals(origen.toUpperCase())
+            && ruta.getDestino().toUpperCase().equals(destino.toUpperCase())) {
 
-        Vuelo vuelo = new Vuelo(TipoVuelo.DIRECTO);
-        vuelo.agregarRuta(ruta);
+          Vuelo vuelo = new Vuelo(TipoVuelo.DIRECTO);
+          vuelo.agregarRuta(ruta);
 
-        this.vuelos.add(vuelo);
-        continue;
-      } else if (ruta.getOrigen().toUpperCase().equals(origen.toUpperCase())) {
-        for (int j = 0; j < rutas.size(); j++) {
-          Ruta rutaEscala = this.rutas.get(j);
-          if (rutaEscala.getOrigen().toUpperCase().equals(ruta.getDestino().toUpperCase()) &&  
-            rutaEscala.getDestino().toUpperCase().equals(destino.toUpperCase())) {
+          this.vuelos.add(vuelo);
+          continue;
+        } else if (ruta.getOrigen().toUpperCase().equals(origen.toUpperCase())) {
+          for (int j = 0; j < rutas.size(); j++) {
+            Ruta rutaEscala = this.rutas.get(j);
+            if (rutaEscala.getOrigen().toUpperCase().equals(ruta.getDestino().toUpperCase()) &&
+                rutaEscala.getDestino().toUpperCase().equals(destino.toUpperCase())) {
 
-            Vuelo vuelo = new Vuelo(TipoVuelo.ESCALA);
-            vuelo.agregarRuta(ruta);
-            vuelo.agregarRuta(rutaEscala);
+              Vuelo vuelo = new Vuelo(TipoVuelo.ESCALA);
+              vuelo.agregarRuta(ruta);
+              vuelo.agregarRuta(rutaEscala);
 
-            this.vuelos.add(vuelo);
+              this.vuelos.add(vuelo);
+              continue;
+            }
           }
         }
       }
@@ -67,6 +72,7 @@ public class ControlVuelos {
    */
   public String mostrarVuelosDisponibles(String origen, String destino) {
     this.cargarRutas();
+
     if (this.rutas.size() <= 0) {
       return null;
     }
@@ -76,7 +82,7 @@ public class ControlVuelos {
     if (this.vuelos.size() <= 0) {
       return "No hay vuelos posibles para las ciudades solicitadas";
     }
-    
+
     String string = "Vuelos posibles\n";
 
     for (Vuelo vuelo : vuelos) {
@@ -84,5 +90,17 @@ public class ControlVuelos {
     }
 
     return string;
+  }
+
+  public List<Ruta> getRutas() {
+    return rutas;
+  }
+
+  public List<Vuelo> getVuelos() {
+    return vuelos;
+  }
+
+  public void setRutas(List<Ruta> rutas) {
+    this.rutas = rutas;
   }
 }
